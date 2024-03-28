@@ -8,4 +8,20 @@ class KontakService {
   Uri getUri(String path) {
     return Uri.parse("$baseUrl$path");
   }
+
+  Future<http.Response> addPerson(Map<String, String> data, File? file) async {
+    var request = http.MultipartRequest(
+      'POST',
+      getUri(endpoint),
+    )
+      ..fields.addAll(data)
+      ..headers['Content-Type'] = 'aplication/json';
+
+    if (file != null) {
+      request.files.add(await http.MultipartFile.fromPath('gambar', file.path));
+    } else {
+      request.files.add(await http.MultipartFile.fromString('gambar', ''));
+    }
+    return await http.Response.fromStream(await request.send());
+  }
 }
