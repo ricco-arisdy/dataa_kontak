@@ -73,6 +73,11 @@ class _FormKontakState extends State<FormKontak> {
                 controller: _noTeleponController,
               ),
             ),
+            _image == null
+                  ? Text('Tidak ada gambar yang dipilih.')
+                  : Image.file(_image!),
+              ElevatedButton(
+                  onPressed: getImage, child: const Text('Pilih Gambar')),
           ]),
         ));
   }
