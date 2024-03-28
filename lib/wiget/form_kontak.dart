@@ -42,6 +42,8 @@ class _FormKontakState extends State<FormKontak> {
           title: Center(child: Text('Input Data Kontak')),
         ),
         body: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
           child: Column(children: [
             Container(
               margin: EdgeInsets.all(10),
@@ -104,6 +106,7 @@ class _FormKontakState extends State<FormKontak> {
               ),
             )
           ]),
+          )
         ));
   }
 }

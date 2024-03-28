@@ -20,7 +20,7 @@ class KontakService {
     if (file != null) {
       request.files.add(await http.MultipartFile.fromPath('gambar', file.path));
     } else {
-      request.files.add(await http.MultipartFile.fromString('gambar', ''));
+      request.files.add( http.MultipartFile.fromString('gambar', ''));
     }
     return await http.Response.fromStream(await request.send());
   }
