@@ -32,9 +32,48 @@ class _FormKontakState extends State<FormKontak> {
       }
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+        appBar: AppBar(
+          title: Center(child: Text('Input Data Kontak')),
+        ),
+        body: SingleChildScrollView(
+          child: Column(children: [
+            Container(
+              margin: EdgeInsets.all(10),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    labelText: "Nama", hintText: "Masukkan Nama"),
+                controller: _namaController,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    labelText: "Email", hintText: "Masukkan Email"),
+                controller: _emailController,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    labelText: "Alamat", hintText: "Masukkan Alamat"),
+                controller: _alamatController,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    labelText: "NoTelpon", hintText: "Masukkan NoTelpon"),
+                controller: _noTeleponController,
+              ),
+            ),
+          ]),
+        ));
   }
 }
