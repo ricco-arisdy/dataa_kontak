@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Person {
   String nama;
   String email;
@@ -35,4 +37,22 @@ class Person {
       gambar: map['gambar'] as String,
     );
   }
+
+   String toJson() => json.encode(toMap());
+
+  factory Person.fromJson(String source) =>
+      Person.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() => 'Person(nama: $nama, email: $email, gambar: $gambar)';
+
+  @override
+  bool operator ==(covariant Person other) {
+    if (identical(this, other)) return true;
+
+    return other.nama == nama && other.email == email && other.gambar == gambar;
+  }
+
+  @override
+  int get hashCode => nama.hashCode ^ email.hashCode ^ gambar.hashCode;
 }
