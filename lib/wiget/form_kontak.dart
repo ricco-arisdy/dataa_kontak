@@ -45,8 +45,8 @@ class _FormKontakState extends State<FormKontak> {
           title: Center(child: Text('Input Data Kontak')),
         ),
         body: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
+            child: Form(
+          key: _formKey,
           child: Column(children: [
             Container(
               margin: EdgeInsets.all(10),
@@ -80,13 +80,23 @@ class _FormKontakState extends State<FormKontak> {
                 controller: _noTeleponController,
               ),
             ),
+            SizedBox(
+              height: 50,
+            ),
             _image == null
-                ? Text('Tidak ada gambar yang dipilih.')
+                ? const Text("Tidak ada gambar yang dipilih")
                 : Image.file(_image!),
-            ElevatedButton(
-                onPressed: getImage, child: const Text('Pilih Gambar')),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 25, top: 35),
+              child: ElevatedButton(
+                onPressed: () {
+                  getImage();
+                },
+                child: Text("Pilih Gambar"),
+              ),
+            ),
             Container(
-               margin: EdgeInsets.all(10),
+              margin: EdgeInsets.all(10),
               child: ElevatedButton(
                 onPressed: () async {
                   if ( _formKey.currentState!.validate()) {
@@ -113,9 +123,8 @@ class _FormKontakState extends State<FormKontak> {
                 },
                 child: const Text("Submit"),
               ),
-            )
+            ),
           ]),
-          )
-        ));
+        )));
   }
 }
