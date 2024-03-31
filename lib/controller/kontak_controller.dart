@@ -11,9 +11,9 @@ class KontakController {
   Future<Map<String, dynamic>> addPerson(Kontak person, File? file) async {
     Map<String, String> data = {
       'nama': person.nama,
-      'nama': person.email,
-      'nama': person.alamat,
-      'nama': person.noTelepon,
+      'email': person.email,
+      'alamat': person.alamat,
+      'no_telepon': person.noTelepon,
     };
 
     try {
@@ -25,7 +25,7 @@ class KontakController {
           'message': 'Data berhasil disimpan',
         };
       } else {
-        if (response.headers['content-type']!.contains('aplication/json')) {
+        if (response.headers['content-type']!.contains('application/json')) {
           var decodedJson = jsonDecode(response.body);
           return {
             'success': false,
