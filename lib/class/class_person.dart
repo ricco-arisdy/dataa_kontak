@@ -19,4 +19,20 @@ class Person {
       gambar: gambar ?? this.gambar,
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'nama': nama,
+      'email': email,
+      'gambar': gambar,
+    };
+  }
+
+  factory Person.fromMap(Map<String, dynamic> map) {
+    return Person(
+      nama: map['nama'] as String,
+      email: map['email'] as String,
+      gambar: map['gambar'] as String,
+    );
+  }
 }
