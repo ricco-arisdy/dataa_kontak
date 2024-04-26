@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dataa_kontak/class/class_kontak.dart';
 import 'package:dataa_kontak/controller/kontak_controller.dart';
 import 'package:dataa_kontak/screen/Home_View.dart';
+import 'package:dataa_kontak/screen/map_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -16,6 +17,7 @@ class FormKontak extends StatefulWidget {
 class _FormKontakState extends State<FormKontak> {
   File? _image;
   final _imagePicker = ImagePicker();
+  String? _alamat;
 
   final _formKey = GlobalKey<FormState>();
   final _namaController = TextEditingController();
@@ -65,13 +67,52 @@ class _FormKontakState extends State<FormKontak> {
               ),
             ),
             Container(
-              margin: EdgeInsets.all(10),
-              child: TextFormField(
-                decoration: InputDecoration(
-                    labelText: "Alamat", hintText: "Masukkan Alamat"),
-                controller: _alamatController,
-              ),
-            ),
+              width: double.infinity,
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("Alamat"),
+                      _alamat == null
+                          ? const SizedBox(
+                              width: double.infinity,
+                              child: Text('Alamat kosong'))
+                          : Text('$_alamat'),
+                      _alamat == null
+                          ? TextButton(
+                              onPressed: () async {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MapScreen(
+                                                onLocationSelected:
+                                                    (selectedAddress) {
+                                              setState(() {
+                                                _alamat = selectedAddress;
+                                              });
+                                            })));
+                              },
+                              child: const Text('Pilih Alamat'),
+                            )
+                          : TextButton(
+                              onPressed: () async {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MapScreen(
+                                                onLocationSelected:
+                                                    (selectedAddress) {
+                                              setState(() {
+                                                _alamat = selectedAddress;
+                                              });
+                                            })));
+                                setState(() {});
+                              },
+                              child: const Text('Ubah Alamat'),
+                            ),
+                    ],
+                  ),
+                ),
             Container(
               margin: EdgeInsets.all(10),
               child: TextFormField(
@@ -104,7 +145,7 @@ class _FormKontakState extends State<FormKontak> {
                     Kontak _person = Kontak(
                       nama: _namaController.text,
                       email: _emailController.text,
-                      alamat: _alamatController.text,
+                      alamat: _alamat ?? '',
                       noTelepon: _noTeleponController.text,
                       foto: _image!.path,
                     );
