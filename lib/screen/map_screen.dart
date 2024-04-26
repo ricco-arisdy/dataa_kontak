@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({super.key});
+  final Function(String) onLocationSelected;
+  const MapScreen({super.key, required this.onLocationSelected});
 
   @override
-  State<MapScreen> createState() => _MapScreenState();
+  _MapScreenState createState() => _MapScreenState();
 }
 
 class _MapScreenState extends State<MapScreen> {
