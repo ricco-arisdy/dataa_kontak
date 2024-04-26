@@ -99,8 +99,8 @@ class _FormKontakState extends State<FormKontak> {
               margin: EdgeInsets.all(10),
               child: ElevatedButton(
                 onPressed: () async {
-                  if ( _formKey.currentState!.validate()) {
-                     _formKey.currentState!.save();
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
                     Kontak _person = Kontak(
                       nama: _namaController.text,
                       email: _emailController.text,
